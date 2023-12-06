@@ -21,6 +21,8 @@ func main() {
 	case 2:
 		fmt.Println("Day 2 Part 1 solution: ")
 		day2.Part1()
+		fmt.Println("Day 2 Part 2 solution: ")
+		day2.Part2()
 
 	default:
 		fmt.Println("Hello World!")
