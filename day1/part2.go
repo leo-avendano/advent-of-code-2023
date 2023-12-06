@@ -1,6 +1,7 @@
-package main
+package day1
 
 import (
+	"aoc2023/common"
 	"fmt"
 	"strconv"
 )
@@ -66,7 +67,7 @@ func searchLeftmostNumeric(str string) string {
 	result := ""
 
 	for i := 0; i < len(str) && result == ""; i++ {
-		if isNumber(str[i]) {
+		if common.IsNumber(str[i]) {
 			result = string(str[i])
 		} else {
 			possibleNumbers := whichPossibleStartingLetter(str[i])
@@ -92,7 +93,7 @@ func searchRightmostNumeric(str string) string {
 	result := ""
 
 	for i := len(str) - 1; i >= 0 && result == ""; i-- {
-		if isNumber(str[i]) {
+		if common.IsNumber(str[i]) {
 			result = string(str[i])
 		} else {
 			possibleNumbers := whichPossibleEndingLetter(str[i])
@@ -114,8 +115,8 @@ func searchRightmostNumeric(str string) string {
 	return result
 }
 
-func part2() {
-	lines := fileToSlice("input.txt")
+func Part2() {
+	lines := common.FileToSlice("./day1/input.txt")
 	total := 0
 	for idx, currStr := range lines {
 		foundCode := searchLeftmostNumeric(currStr) + searchRightmostNumeric(currStr)

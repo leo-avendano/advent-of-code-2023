@@ -1,47 +1,22 @@
-package main
+package day1
 
 import (
-	"bufio"
+	"aoc2023/common"
 	"fmt"
-	"os"
 	"strconv"
 )
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func isNumber(b byte) bool {
-	return (b >= 48 && b <= 57)
-}
-
-func fileToSlice(filename string) []string {
-	var lines []string
-	file, err := os.Open(filename)
-	check(err)
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
-	return lines
-}
 
 func searchNearestNumeric(str string, reverse bool) string {
 	result := ""
 	if reverse {
 		for i := len(str) - 1; i >= 0 && result == ""; i-- {
-			if isNumber(str[i]) {
+			if common.IsNumber(str[i]) {
 				result = string(str[i])
 			}
 		}
 	} else {
 		for i := 0; i < len(str) && result == ""; i++ {
-			if isNumber(str[i]) {
+			if common.IsNumber(str[i]) {
 				result = string(str[i])
 			}
 		}
@@ -49,8 +24,8 @@ func searchNearestNumeric(str string, reverse bool) string {
 	return result
 }
 
-func part1() {
-	lines := fileToSlice("input.txt")
+func Part1() {
+	lines := common.FileToSlice("./day1/input.txt")
 	total := 0
 	for idx, currStr := range lines {
 		foundCode := searchNearestNumeric(currStr, false) + searchNearestNumeric(currStr, true)
