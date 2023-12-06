@@ -49,7 +49,7 @@ func searchNearestNumeric(str string, reverse bool) string {
 	return result
 }
 
-func main() {
+func part1() {
 	lines := fileToSlice("input.txt")
 	total := 0
 	for idx, currStr := range lines {
